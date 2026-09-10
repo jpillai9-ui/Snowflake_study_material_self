@@ -1,0 +1,33 @@
+What is Snowflake?
+Snowflake is a cloud based data warehousing solution, Founded in 2012.
+Snowflake offers data storage and analytics services. 
+Snowflake does not have their own infrastructure.
+It runs on Amazon S3, Microsoft Azure, and the Google Cloud platform.
+Snowflake runs completely on cloud infrastructure. 
+Available as Software-as-a-Service.
+
+Why Snowflake?
+Pay for what you use model.
+It is a cloud platform, no Infrastructure cost.
+Snowflake is more than a Datawarehouse.
+It also helps in some transformations, create data pipes, create visual dashboard etc.
+High scalability.
+Data recovery, backup, sharing, masking.
+Can analyze the data present in external files.
+Easy integration with Data Visualization/Reporting tolls.
+
+Traditional WH Vs Snowflake:
+Feature                       Traditional WH                       Snowflake
+Infrastructure cost               yes                        No Infrastructure cost
+Handle semi structure data    Need ETL Tools                 Snowflake can process
+Data loading and unloading    Need ETL tools                 Can be done by using “COPY”
+Scalability                   Not an easy task               Highly Scalable (support Scale-up and Scale-out)
+Database Administration       Highly Required                In-built performance optimization with its micro partitions and cluster keys
+Data Backup                   Need additional storage        Easy and no cost with “Cloning”
+Data Recovery                 Difficult                      Very easy with “Time Travel”
+Data Sharing                  Difficult                      Easy with Data Sharing feature
+Change Data Capture           Need ETL tools                 Can be done by using “Streams”
+Scheduling                    Tools required                 Can schedule by using “Tasks”
+
+
+
