@@ -1,0 +1,38 @@
+Snowflake Architecture:
+
+1.Database Storage Layer:
+-Stores table data and query results
+-Data will be stored in columnar format
+-Data will be stored in micro partitions
+-Snowflake manages all aspects of how this data is stored i.e. the data organization, file size, structure, compression, metadata, statistics
+-The data objects stored by Snowflake are not directly visible nor accessible by customers; they are only accessible through SQL query operations run using Snowflake.
+-We can define cluster keys on large tables for better performance.
+
+2.Query Processing Layer:
+This is the actual processing unit of snowflake
+Snowflake processes queries using “virtual warehouses”
+Each virtual warehouse is composed of multiple compute nodes allocated by Snowflake from a cloud provider.
+On AWS they are a group of EC2 instances and on AZURE a group of Virtual Machines
+Compute cost will be calculated on the basis of query execution time on virtual warehouses
+Virtual Warehouses are considered as the muscle of the system
+Can scale up and scale down easily
+Auto-Suspend and Auto-Resume is available
+
+3.Cloud Services Layer:
+Collection of services that coordinate activities across Snowflake
+This is the Brain of the snowflake
+Authentication and access control
+Infrastructure management
+Metadata Management
+Security
+Manages all Serverless tasks like Snowpipe, Tasks, Materialized view maintenance etc.
+
+Connecting to Snowflake:
+Snowflake supports multiple ways of connecting to the service:
+A web-based user interface from which all aspects of managing and using Snowflake can be accessed.
+Command line clients (e.g. SnowSQL) which can also access all aspects of managing and using Snowflake.
+ODBC and JDBC drivers that can be used by other applications (e.g. Tableau) to connect to Snowflake.
+Through native connectors available in ETL tools (e.g. Datastage, Informatica).
+
+
+
