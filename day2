@@ -34,5 +34,31 @@ Command line clients (e.g. SnowSQL) which can also access all aspects of managin
 ODBC and JDBC drivers that can be used by other applications (e.g. Tableau) to connect to Snowflake.
 Through native connectors available in ETL tools (e.g. Datastage, Informatica).
 
+Virtual Warehouse:
+
+A ‘Virtual Warehouse’ is a cluster of one or more compute resources used to process queries and other DML operations
+There are 2 types of warehouse configuration:
+Requirement Specific
+Environment Specific
+
+Warehouse Size Starts from : xs,s,m,l,xl,xxl,3xl,4xl,5xl,6xl
+with number of compute resources/nodes increasing exponentially at the power of 2 at the same time computing cost will also be increased.
+
+Sometimes if resources are not available to concurrently process all queries, then queries get queued for execution and then gets executed as resources becomes available..
+
+Snowflake provides two options for increasing the computer resources.
+
+Scale Up (or) Vertical Scaling (Increasing or decreasing the size of virtual warehouse):
+Resizing - Increase the size of the VW if your queries are taking too long or data loading is slow.
+You can increase the VW anytime using the Web UI or SQL interface.
+
+Scale Out (or) Horizontal Scaling (Increasing or decreasing the number of clusters):
+As load increases the same warehouse will automatically starts more cluster to prevent queries from queuing. 
+Then when additional clusters are no longer needed, it shuts those additional cluster which were launched. 
+Multi-Clustering is an ENTERPRISE EDITION feature..
+
+Auto Suspend and Auto Resume to save cost
+
+
 
 
