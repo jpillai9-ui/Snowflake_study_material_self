@@ -1,0 +1,68 @@
+Micro-Partitions and Clustering:
+Agenda:
+How data is stored in micro partitions
+Metadata of micro partitions
+Benefits of micro partitions
+Clustering (Cluster keys)
+Defining Cluster keys
+How to choose Cluster keys
+
+Micro partitions:
+Snowflake has implemented a powerful and unique form of partitioning, called micro-partitioning.
+Micro-partitioning is automatically performed on all Snowflake tables. 
+Tables are transparently partitioned using the ordering of the data as it is inserted/loaded.
+Micro-partitions are small in size (50 to 500 MB).
+Data is compressed in micro partitions
+Snowflake automatically determines the most efficient compression algorithm for the columns in each micro-partition.
+
+Metadata of Micro partitions:
+Metadata is also maintained by Snowflake which Includes…
+the number of distinct values for each field 
+the range of values for each field 
+Other useful information to improve performance.
+
+Metadata is a key part of the Snowflake architecture as it allows queries to determine whether or not the data inside a micro-partition should be queried. 
+This way, when a query is executed, it does not need to scan the entire dataset but instead only queries the micro-partitions that hold relevant data. 
+This process is known as query pruning, as the data is pruned before the query itself is executed.
+
+Benefits of Micro partitioning:
+In contrast to traditional static partitioning, Snowflake micro-partitions are derived automatically; they don’t need to be explicitly defined up-front or maintained by users.
+Micro-partitions are small in size (50 to 500 MB), which enables extremely efficient DML and fine-grained pruning for faster queries.
+Columns are stored independently within micro-partitions, often referred to as columnar storage. This enables efficient scanning of individual columns; only the columns referenced by a query are scanned.
+Columns are also compressed individually within micro-partitions, this optimizes the storage cost.
+
+Clustering:
+Clustering is a key factor in query performance, It reduces the scanning of micro partitions.
+A clustering key is a subset of columns in a table that are explicitly designated to co-locate the data in the table in the micro-partitions.
+Initially the data will be stored in micro partitions in the order of inserting records, then will be realigned based on the cluster keys.
+We have to choose proper Cluster keys.
+We can define cluster keys on multiple columns as well.
+We can modify the cluster keys based on our requirements, this is called as re-clustering.
+Re-clustering consumes credits, number of credits consumed depends on the size of the table.
+
+Defining Cluster keys:
+Defining Cluster keys on a new table:
+CREATE TABLE MY_TABLE 
+(
+type number, 
+name string,
+country string,
+date date,
+)
+CLUSTER BY (name);
+
+Modifying Cluster keys on existing table:
+
+ALTER   TABLE MY_TABLE   CLUSTER BY (name, date);
+
+Choosing Cluster Keys:
+Define cluster keys on
+Columns frequently used in Filter conditions (Where clause)
+Columns using as Join keys
+Frequently used functions or expressions
+	Like YEAR(date), SUBSTRING(med_cd,1,6)
+
+Snowflake recommends
+Define cluster keys on large tables and don’t on small tables.
+Don’t define cluster keys on more than 4 columns.
+
